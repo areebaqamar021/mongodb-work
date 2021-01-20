@@ -8,7 +8,7 @@ function Add() {
  const [pwd,setPwd]=useState('')
 
 const handleSubmit=(e)=>{
-  e.preventDefault();
+  // e.preventDefault();
   let user = {name, email, pwd}
   console.log(user)
       axios.post('http://localhost:4000/api/users/', user)
@@ -49,7 +49,7 @@ const handleSubmit=(e)=>{
               </Row>
               <Row className="my-2">
                 <Col className="text-center">
-                  <Button type='submit' variant="info" size="md">
+                  <Button type='submit' variant="dark" size="md">
                     Register User
                   </Button>
                 </Col>

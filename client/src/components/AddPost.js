@@ -1,13 +1,15 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { ListGroup, Row, Col, Button } from "react-bootstrap";
+import FileBase64 from 'react-file-base64';
 
 function AddPost() {
     const [title, settitle] = useState('')
     const [description, setdescription] = useState('')
+    const [img, setimg] = useState('')
     const handleSubmit=(e)=>{
         e.preventDefault()
-        let newPost = {title, description};
+        let newPost = {title, description, img};
         axios.post('http://localhost:4000/api/posts/add',newPost)
         .then(res => console.log(res))
         .catch(err=>console.log(err,'error'));
@@ -36,9 +38,17 @@ function AddPost() {
                   <input type="text" name='description' onChange={(e)=>setdescription(e.target.value)} />
                 </Col>
               </Row>
+              <Row>
+                  <Col className="col-headers">Upload</Col>
+                  <Col>
+                    <FileBase64
+                      multiple={false}
+                      onDone={({base64})=>setimg(base64)}/>                
+                      </Col>
+                </Row>
               <Row className="my-2">
                 <Col className="text-center">
-                  <Button type='submit' variant="info" size="md">
+                  <Button type='submit' variant="dark" size="md">
                     Add
                   </Button>
                 </Col>

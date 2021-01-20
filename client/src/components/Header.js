@@ -13,13 +13,13 @@ const Header = () => {
           <h5>Users</h5>
         </Nav.Link>
         <Nav.Link as={Link} to="/register">
-          Register
+          <h5>Register</h5>
         </Nav.Link>
         <Nav.Link as={Link} to="/posts">
-         Posts
+         <h5>Posts</h5>
         </Nav.Link>
         <Nav.Link as={Link} to="/addpost">
-         New Post
+         <h5>New Post</h5>
         </Nav.Link>
       </Nav>
     </Navbar>

@@ -51,5 +51,18 @@ router.get('/:id', async (req, res) => {
     // let result = users.filter((item) => item.id == id)
     // res.json(result[0])
 });
+router.delete('/:id', async (req, res) => {
+  try {
+       const post = await User.findByIdAndDelete(req.params.id);
+  res.json({
+      success: true,
+      status: 200, //ok
+      msg: 'user is deleted successfully'
+  })
+ 
+  } catch (error) {
+      console.log(error)
+  }
 
+})
 module.exports = router;

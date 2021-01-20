@@ -5,6 +5,16 @@ import axios from 'axios';
 
 function Posts() {
   const [state, setstate] = useState([]);
+  const [msg, setmsg] = useState('')
+  const handleDelete = (id)=>{
+    console.log(id)
+    axios.delete('http://localhost:4000/api/posts/'+id)
+    .then((res) => {
+      console.log(res.data);
+      setmsg(`${id} is deleted successfully`);
+    })
+    .catch((e) => console.log(e));
+  }
   useEffect(() => {
       axios.get('http://localhost:4000/api/posts/')
       .then((res) => {
@@ -33,12 +43,19 @@ function Posts() {
                 <Col>{item.description}</Col>
                 <Col>
                   <Button 
-                    variant="info"
+                    variant="dark"
                     size="sm"
                     as={Link}
                     to={"/single-post/" + item._id}
                   >
                     View
+                  </Button>&nbsp;
+                  <Button 
+                    variant="dark"
+                    size="sm" 
+                    onClick={()=>handleDelete(item._id)}
+                  >
+                    Delete
                   </Button>
                 </Col>
               </Row>
